@@ -2,6 +2,9 @@
 
 Symposium Demo: Creating a Teams Bot that leverages LLM and Custom Sitecore MCP Server
 
+<img width="2948" height="1782" alt="image" src="https://github.com/user-attachments/assets/2207d884-bb37-4729-b49c-2c16dd195de5" />
+
+
 ## Prerequisites
 
 - [Node.js](https://nodejs.org) version 18 or higher
