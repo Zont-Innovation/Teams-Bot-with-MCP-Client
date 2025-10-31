@@ -9,12 +9,12 @@ export class EchoBot extends ActivityHandler {
     private openaiService: OpenAIService;
     private mcpClient: MCPClient;
 
-    constructor(openaiApiKey: string, mcpServerPath: string) {
+    constructor(openaiApiKey: string, openaiEndpoint: string | undefined, openaiModel: string, mcpServerPath: string) {
         super();
 
         // Initialize MCP client and OpenAI service
         this.mcpClient = new MCPClient(mcpServerPath);
-        this.openaiService = new OpenAIService(openaiApiKey, this.mcpClient);
+        this.openaiService = new OpenAIService(openaiApiKey, openaiEndpoint, openaiModel, this.mcpClient);
 
         // Connect to MCP server on initialization
         this.initializeMCPClient();

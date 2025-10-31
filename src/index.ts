@@ -62,6 +62,8 @@ adapter.onTurnError = onTurnErrorHandler;
 
 // Create the main dialog.
 const openaiApiKey = process.env.OPENAI_API_KEY;
+const openaiEndpoint = process.env.OPENAI_ENDPOINT;
+const openaiModel = process.env.OPENAI_MODEL || 'gpt-4-turbo';
 const mcpServerPath = process.env.MCP_SERVER_PATH;
 
 if (!openaiApiKey) {
@@ -72,7 +74,16 @@ if (!mcpServerPath) {
     throw new Error('MCP_SERVER_PATH is not set in environment variables');
 }
 
-const myBot = new EchoBot(openaiApiKey, mcpServerPath);
+// Log which service is being used
+if (openaiEndpoint) {
+    console.log('Using Azure AI Foundry with endpoint:', openaiEndpoint);
+    console.log('Model/Deployment:', openaiModel);
+} else {
+    console.log('Using OpenAI directly');
+    console.log('Model:', openaiModel);
+}
+
+const myBot = new EchoBot(openaiApiKey, openaiEndpoint, openaiModel, mcpServerPath);
 
 // Listen for incoming requests.
 server.post('/api/messages', (req, res, next) => {

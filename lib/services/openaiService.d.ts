@@ -6,8 +6,9 @@ import { MCPClient } from './mcpClient';
 export declare class OpenAIService {
     private openai;
     private mcpClient;
+    private model;
     private systemPrompt;
-    constructor(apiKey: string, mcpClient: MCPClient);
+    constructor(apiKey: string, endpoint: string | undefined, model: string, mcpClient: MCPClient);
     /**
      * Process a user message with OpenAI, using MCP tools when needed
      */
